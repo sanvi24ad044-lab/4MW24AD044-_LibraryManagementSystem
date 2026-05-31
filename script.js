@@ -1,29 +1,29 @@
 function insertBook(){
-document.getElementById("result").innerHTML =
+document.getElementById("output").innerHTML =
 "INSERT Operation Executed Successfully";
 }
 
 function updateBook(){
-document.getElementById("result").innerHTML =
+document.getElementById("output").innerHTML =
 "UPDATE Operation Executed Successfully";
 }
 
 function deleteBook(){
-document.getElementById("result").innerHTML =
+document.getElementById("output").innerHTML =
 "DELETE Operation Executed Successfully";
 }
 
 function displayBooks(){
-document.getElementById("result").innerHTML =
+document.getElementById("output").innerHTML =
 "Displaying Library Records";
 }
 
 function executeProcedure(){
-document.getElementById("result").innerHTML =
+document.getElementById("output").innerHTML =
 "Stored Procedure Executed Successfully";
 }
 
 function triggerDemo(){
-document.getElementById("result").innerHTML =
+document.getElementById("output").innerHTML =
 "Trigger Executed Successfully";
 }
