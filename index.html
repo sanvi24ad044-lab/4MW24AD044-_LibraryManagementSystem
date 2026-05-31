@@ -1,0 +1,60 @@
+<!DOCTYPE html><html>
+<head>
+    <title>Library Management System</title>
+    <link rel="stylesheet" href="style.css">
+</head><body><h1>📚 Library Management System</h1>
+
+<div class="container">
+
+    <h2>Book Management</h2>
+
+    <input type="text" id="bookid" placeholder="Book ID"><br><br>
+
+    <input type="text" id="title" placeholder="Book Title"><br><br>
+
+    <input type="text" id="author" placeholder="Author Name"><br><br>
+
+    <input type="number" id="price" placeholder="Price"><br><br>
+
+    <button onclick="insertBook()">
+        Insert Book
+    </button>
+
+    <button onclick="updateBook()">
+        Update Book
+    </button>
+
+    <button onclick="deleteBook()">
+        Delete Book
+    </button>
+
+    <button onclick="displayBooks()">
+        Display Records
+    </button>
+
+    <hr>
+
+    <h2>Database Operations</h2>
+
+    <button onclick="executeProcedure()">
+        Execute Stored Procedure
+    </button>
+
+    <button onclick="triggerDemo()">
+        Trigger Demonstration
+    </button>
+
+    <hr>
+
+    <h2>Output</h2>
+
+    <div id="output">
+        Results will be displayed here...
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
