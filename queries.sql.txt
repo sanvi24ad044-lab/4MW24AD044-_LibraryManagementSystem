@@ -1,0 +1,75 @@
+-- Query 1
+SELECT * FROM Book;
+
+-- Query 2
+SELECT *
+FROM Book
+WHERE author_id=1;
+
+-- Query 3
+SELECT *
+FROM Issue i
+INNER JOIN Member m
+ON i.member_id=m.member_id;
+
+-- Query 4
+SELECT *
+FROM Issue i
+JOIN Member m
+ON i.member_id=m.member_id
+JOIN Book b
+ON i.book_id=b.book_id;
+
+-- Query 5
+SELECT category,
+COUNT(*) AS TotalBooks
+FROM Book
+GROUP BY category;
+
+-- Query 6
+SELECT category,
+COUNT(*) AS TotalBooks
+FROM Book
+GROUP BY category
+HAVING COUNT(*)>50;
+
+-- Query 7
+SELECT *
+FROM Book
+WHERE price >
+(
+SELECT AVG(price)
+FROM Book
+);
+
+-- Query 8
+SELECT m1.*
+FROM Member m1
+WHERE
+(
+SELECT COUNT(*)
+FROM Issue i
+WHERE i.member_id=m1.member_id
+)
+>
+(
+SELECT COUNT(*)
+FROM Issue i
+WHERE i.member_id=101
+);
+
+-- Query 9
+SELECT *
+FROM Book b
+LEFT JOIN Issue i
+ON b.book_id=i.book_id;
+
+-- Query 10
+SELECT *
+FROM Book b
+WHERE NOT EXISTS
+(
+SELECT *
+FROM Issue i
+WHERE b.book_id=i.book_id
+);

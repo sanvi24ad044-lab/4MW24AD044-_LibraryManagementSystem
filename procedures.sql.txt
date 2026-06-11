@@ -1,0 +1,62 @@
+DELIMITER $$
+
+CREATE PROCEDURE IssueBook
+(
+IN p_issueid INT,
+IN p_memberid INT,
+IN p_bookid INT,
+IN p_issuedate DATE,
+IN p_returndate DATE
+)
+
+BEGIN
+
+INSERT INTO Issue
+VALUES
+(
+p_issueid,
+p_memberid,
+p_bookid,
+p_issuedate,
+p_returndate
+);
+
+END $$
+
+DELIMITER ;
+
+
+
+
+
+DELIMITER $$
+
+CREATE PROCEDURE CalculateFine
+(
+IN days_late INT
+)
+
+BEGIN
+
+SELECT days_late*5
+AS FineAmount;
+
+END $$
+
+DELIMITER ;
+
+
+
+
+
+
+CALL IssueBook
+(
+3,
+103,
+203,
+'2025-05-20',
+'2025-05-30'
+);
+
+CALL CalculateFine(10);

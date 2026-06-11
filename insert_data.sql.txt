@@ -1,0 +1,28 @@
+INSERT INTO Author VALUES
+(1,'Chetan Bhagat','India'),
+(2,'J K Rowling','UK'),
+(3,'Dan Brown','USA');
+
+INSERT INTO Member VALUES
+(101,'Sanvi','9876543210','2025-01-01'),
+(102,'Rahul','9876543211','2025-01-02'),
+(103,'Ananya','9876543212','2025-01-03');
+
+INSERT INTO Book VALUES
+(201,'Five Point Someone',1,'Novel',300,'Available'),
+(202,'Harry Potter',2,'Fantasy',600,'Available'),
+(203,'Da Vinci Code',3,'Mystery',450,'Available');
+
+INSERT INTO Issue VALUES
+(1,101,201,'2025-05-01','2025-05-10'),
+(2,102,202,'2025-05-02','2025-05-12');
+
+INSERT INTO Fine VALUES
+(1,101,50,'No'),
+(2,102,0,'Yes');
+
+INSERT INTO Staff VALUES
+(1,'Ramesh','Librarian'),
+(2,'Suresh','Assistant');
+
+

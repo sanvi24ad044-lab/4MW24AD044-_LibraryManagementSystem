@@ -1,0 +1,64 @@
+DELIMITER $$
+
+CREATE TRIGGER trg_book_issue
+
+AFTER INSERT
+ON Issue
+
+FOR EACH ROW
+
+BEGIN
+
+UPDATE Book
+
+SET availability='Issued'
+
+WHERE book_id=NEW.book_id;
+
+END $$
+
+DELIMITER ;
+
+
+
+
+
+
+ALTER TABLE Issue
+ADD due_date DATE;
+
+
+
+
+
+DELIMITER $$
+
+CREATE TRIGGER trg_fine
+
+AFTER UPDATE
+ON Issue
+
+FOR EACH ROW
+
+BEGIN
+
+IF NEW.return_date > NEW.due_date THEN
+
+INSERT INTO Fine
+VALUES
+(
+3,
+NEW.member_id,
+DATEDIFF
+(
+NEW.return_date,
+NEW.due_date
+)*5,
+'No'
+);
+
+END IF;
+
+END $$
+
+DELIMITER ;

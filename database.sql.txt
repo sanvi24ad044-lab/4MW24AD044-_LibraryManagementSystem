@@ -1,0 +1,50 @@
+CREATE DATABASE library_management;
+
+USE library_management;
+
+CREATE TABLE Author(
+author_id INT PRIMARY KEY,
+name VARCHAR(100),
+country VARCHAR(50)
+);
+
+CREATE TABLE Member(
+member_id INT PRIMARY KEY,
+name VARCHAR(100),
+phone VARCHAR(15),
+membership_date DATE
+);
+
+CREATE TABLE Book(
+book_id INT PRIMARY KEY,
+title VARCHAR(100),
+author_id INT,
+category VARCHAR(50),
+price DECIMAL(10,2),
+availability VARCHAR(20),
+FOREIGN KEY(author_id) REFERENCES Author(author_id)
+);
+
+CREATE TABLE Issue(
+issue_id INT PRIMARY KEY,
+member_id INT,
+book_id INT,
+issue_date DATE,
+return_date DATE,
+FOREIGN KEY(member_id) REFERENCES Member(member_id),
+FOREIGN KEY(book_id) REFERENCES Book(book_id)
+);
+
+CREATE TABLE Fine(
+fine_id INT PRIMARY KEY,
+member_id INT,
+amount DECIMAL(10,2),
+paid_status VARCHAR(20),
+FOREIGN KEY(member_id) REFERENCES Member(member_id)
+);
+
+CREATE TABLE Staff(
+staff_id INT PRIMARY KEY,
+name VARCHAR(100),
+role VARCHAR(50)
+);
