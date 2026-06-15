@@ -1,27 +1,236 @@
-body{
-font-family: Arial, sans-serif;
-background:#f5f5f5;
-text-align:center;
-padding:30px;
+/* --- CSS SYSTEM CONTROL ROOT VARIABLES --- */
+:root {
+    --bg-color: #f1f5f9;
+    --card-color: #ffffff;
+    --text-main: #0f172a;
+    --text-sub: #64748b;
+    --primary-accent: #6366f1;
+    --border: #e2e8f0;
+    --radius-lg: 16px;
+    --radius-md: 12px;
+    
+    /* Functional Action Palette (Dashboard Elements) */
+    --insert-color: #10b981;
+    --insert-hover: #059669;
+    --update-color: #f59e0b;
+    --update-hover: #d97706;
+    --delete-color: #ef4444;
+    --delete-hover: #dc2626;
+    --display-color: #4f46e5;
+    --display-hover: #4338ca;
+    --op-color: #475569;
+    --op-hover: #334155;
 }
 
-.container{
-background:white;
-padding:30px;
-border-radius:10px;
-max-width:700px;
-margin:auto;
-box-shadow:0px 0px 10px gray;
+/* --- RESET & STRUCTURAL CORE --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-button{
-padding:10px 15px;
-margin:10px;
-cursor:pointer;
+body {
+    font-family: 'Plus Jakarta Sans', Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    padding: 40px 20px;
+    line-height: 1.5;
 }
 
-#result{
-margin-top:20px;
-font-size:18px;
-font-weight:bold;
+/* --- PRIMARY WORKSPACE WRAPPER --- */
+.container {
+    background-color: var(--card-color);
+    padding: 40px;
+    border-radius: var(--radius-lg);
+    max-width: 800px;
+    margin: auto;
+    box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.05), 0 8px 10px -6px rgba(15, 23, 42, 0.05);
+    border: 1px solid var(--border);
+    text-align: left;
+}
+
+/* --- TYPOGRAPHY HEADER STYLING --- */
+.main-header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.main-header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.75px;
+    color: var(--text-main);
+}
+
+.main-header p {
+    color: var(--text-sub);
+    font-size: 0.95rem;
+    margin-top: 6px;
+}
+
+/* --- SUB-SECTION HEADINGS --- */
+section h2 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* --- INPUT GRID ARRAY CONFIGURATIONS --- */
+.input-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.input-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.input-wrapper label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-sub);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-left: 2px;
+}
+
+input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    font-family: inherit;
+    font-size: 0.95rem;
+    outline: none;
+    background-color: #f8fafc;
+    transition: all 0.2s ease;
+}
+
+input:focus {
+    border-color: var(--primary-accent);
+    background-color: #ffffff;
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.08);
+}
+
+/* --- ACTION CONTROL BUTTON SYSTEM --- */
+.button-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.central-buttons {
+    justify-content: flex-start;
+}
+
+.btn {
+    padding: 12px 20px;
+    border: none;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    font-family: inherit;
+    font-size: 0.9rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+    color: #ffffff;
+}
+
+.btn:active { 
+    transform: scale(0.97); 
+}
+
+/* Specific Action Engine Color Matrices */
+.btn-insert { background-color: var(--insert-color); }
+.btn-insert:hover { background-color: var(--insert-hover); }
+
+.btn-update { background-color: var(--update-color); }
+.btn-update:hover { background-color: var(--update-hover); }
+
+.btn-delete { background-color: var(--delete-color); }
+.btn-delete:hover { background-color: var(--delete-hover); }
+
+.btn-display { background-color: var(--display-color); }
+.btn-display:hover { background-color: var(--display-hover); }
+
+.btn-op { background-color: var(--op-color); }
+.btn-op:hover { background-color: var(--op-hover); }
+
+/* --- SEPARATOR DIVIDERS --- */
+.divider {
+    border: 0;
+    height: 1px;
+    background: var(--border);
+    margin: 32px 0;
+}
+
+/* --- DARK MODE OUTPUT CONSOLE VIEWPORT --- */
+.output-box {
+    background-color: #0f172a;
+    border-radius: var(--radius-md);
+    padding: 24px;
+    min-height: 140px;
+    max-height: 350px;
+    overflow-y: auto;
+    font-family: 'Courier New', Courier, monospace;
+    color: #cbd5e1;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    border-left: 4px solid var(--primary-accent);
+}
+
+.placeholder-text {
+    color: #475569;
+    font-style: italic;
+}
+
+/* Dynamic Console Output Alert Class Injectors */
+.console-alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 4px;
+    border-left: 4px solid transparent;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+.alert-success { background: rgba(16, 185, 129, 0.08); border-color: var(--insert-color); color: #34d399; }
+.alert-warning { background: rgba(245, 158, 11, 0.08); border-color: var(--update-color); color: #fbbf24; }
+.alert-danger { background: rgba(239, 68, 68, 0.08); border-color: var(--delete-color); color: #f87171; }
+
+/* --- CONSOLE DISPLAY RENDER DATA TABLES --- */
+.records-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 4px;
+}
+
+.records-table th {
+    color: #38bdf8;
+    border-bottom: 2px solid #334155;
+    padding: 10px 12px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.records-table td {
+    padding: 12px 12px;
+    border-bottom: 1px solid #1e293b;
+    color: #cbd5e1;
+}
+
+.records-table tr:hover td {
+    background-color: rgba(255, 255, 255, 0.02);
 }
