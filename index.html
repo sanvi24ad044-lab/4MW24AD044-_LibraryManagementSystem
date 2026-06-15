@@ -4,46 +4,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Library Management System</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <header class="main-header">
         <h1>📚 Library Management System</h1>
+        <p>Relational Database Schema Operations Emulator Layer</p>
     </header>
 
     <div class="container">
         <section class="form-section">
-            <h2>Book Management</h2>
+            <h2><i class="fa-solid fa-book-bookmark"></i> Book Management</h2>
             <div class="input-group">
-                <input type="text" id="bookid" placeholder="Book ID">
-                <input type="text" id="title" placeholder="Book Title">
-                <input type="text" id="author" placeholder="Author Name">
-                <input type="number" id="price" placeholder="Price ($)">
+                <div class="input-wrapper">
+                    <label for="bookid">Book ID</label>
+                    <input type="text" id="bookid" placeholder="Book ID">
+                </div>
+                <div class="input-wrapper">
+                    <label for="title">Book Title</label>
+                    <input type="text" id="title" placeholder="Book Title">
+                </div>
+                <div class="input-wrapper">
+                    <label for="author">Author Name</label>
+                    <input type="text" id="author" placeholder="Author Name">
+                </div>
+                <div class="input-wrapper">
+                    <label for="price">Price ($)</label>
+                    <input type="number" id="price" placeholder="Price ($)">
+                </div>
             </div>
 
             <div class="button-group">
-                <button onclick="insertBook()" class="btn btn-insert">Insert Book</button>
-                <button onclick="updateBook()" class="btn btn-update">Update Book</button>
-                <button onclick="deleteBook()" class="btn btn-delete">Delete Book</button>
-                <button onclick="displayBooks()" class="btn btn-display">Display Records</button>
+                <button onclick="insertBook()" class="btn btn-insert"><i class="fa-solid fa-square-plus"></i> Insert Book</button>
+                <button onclick="updateBook()" class="btn btn-update"><i class="fa-solid fa-pen-to-square"></i> Update Book</button>
+                <button onclick="deleteBook()" class="btn btn-delete"><i class="fa-solid fa-trash-can"></i> Delete Book</button>
+                <button onclick="displayBooks()" class="btn btn-display"><i class="fa-solid fa-table-list"></i> Display Records</button>
             </div>
         </section>
 
         <hr class="divider">
 
         <section class="operations-section">
-            <h2>Database Operations</h2>
+            <h2><i class="fa-solid fa-microchip"></i> Database Operations</h2>
             <div class="button-group central-buttons">
-                <button onclick="executeProcedure()" class="btn btn-op">Execute Stored Procedure</button>
-                <button onclick="triggerDemo()" class="btn btn-op">Trigger Demonstration</button>
+                <button onclick="executeProcedure()" class="btn btn-op"><i class="fa-solid fa-gears"></i> Execute Stored Procedure</button>
+                <button onclick="triggerDemo()" class="btn btn-op"><i class="fa-solid fa-bolt-lightning"></i> Trigger Demonstration</button>
             </div>
         </section>
 
         <hr class="divider">
 
         <section class="output-section">
-            <h2>Output Console</h2>
+            <h2><i class="fa-solid fa-rectangle-terminal"></i> Output Console</h2>
             <div id="output" class="output-box">
                 <p class="placeholder-text">Results will be displayed here...</p>
             </div>
