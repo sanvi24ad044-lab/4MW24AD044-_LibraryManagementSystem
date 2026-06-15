@@ -36,12 +36,12 @@ function insertBook() {
     const { id, title, author, price } = getInputs();
 
     if (!id || !title || !author || isNaN(price)) {
-        printOutput("<p class='alert-msg' style='border-color: #e74c3c; background: #fde8e8;'>⚠️ Please fill in all fields with valid data.</p>");
+        printOutput("<div class='console-alert alert-danger'>⚠️ Runtime Alert: Please fill in all configuration parameters with valid data strings.</div>");
         return;
     }
 
     if (libraryDB.some(book => book.id === id)) {
-        printOutput(`<p class='alert-msg' style='border-color: #e74c3c; background: #fde8e8;'>❌ Error: Book with ID "${id}" already exists.</p>`);
+        printOutput(`<div class='console-alert alert-danger'>❌ System Exception: Record primary identity collision. ID "${id}" already locked inside index.</div>`);
         return;
     }
 
@@ -50,7 +50,7 @@ function insertBook() {
     saveToStorage();
     clearInputs();
 
-    printOutput(`<p class='alert-msg' style='border-color: #2ecc71; background: #e8f8f0;'>✅ SUCCESS: Book "${title}" inserted into database successfully.</p>`);
+    printOutput(`<div class='console-alert alert-success'>✅ TRANSACTION COMMIT: Entity unit instance "${title}" compiled successfully inside schema.</div>`);
 }
 
 /* --- 2. UPDATE OPERATION --- */
@@ -58,7 +58,7 @@ function updateBook() {
     const { id, title, author, price } = getInputs();
 
     if (!id) {
-        printOutput("<p class='alert-msg' style='border-color: #f1c40f; background: #fef9e7;'>⚠️ Enter a 'Book ID' to identify which record to update.</p>");
+        printOutput("<div class='console-alert alert-warning'>⚠️ Query Exception: Provide a targeted indexing 'Book ID' field to perform runtime updates.</div>");
         return;
     }
 
@@ -71,9 +71,9 @@ function updateBook() {
         
         saveToStorage();
         clearInputs();
-        printOutput(`<p class='alert-msg' style='border-color: #f1c40f; background: #fef9e7;'>🔄 UPDATE SUCCESS: Book ID ${id} modified successfully.</p>`);
+        printOutput(`<div class='console-alert alert-warning'>🔄 ROW MUTATION SUCCESS: Index object dataset tracking target [ID: ${id}] successfully customized.</div>`);
     } else {
-        printOutput(`<p class='alert-msg' style='border-color: #e74c3c; background: #fde8e8;'>❌ Error: Book ID "${id}" not found.</p>`);
+        printOutput(`<div class='console-alert alert-danger'>❌ Execution Exception: Target referencing constraint ID "${id}" is completely unmapped.</div>`);
     }
 }
 
@@ -82,7 +82,7 @@ function deleteBook() {
     const { id } = getInputs();
 
     if (!id) {
-        printOutput("<p class='alert-msg' style='border-color: #e74c3c; background: #fde8e8;'>⚠️ Enter a 'Book ID' to delete a record.</p>");
+        printOutput("<div class='console-alert alert-danger'>⚠️ Query Warning: Input tracking reference 'Book ID' criteria to initiate entity mutation drop query.</div>");
         return;
     }
 
@@ -90,20 +90,20 @@ function deleteBook() {
 
     if (bookIndex !== -1) {
         let deletedBook = libraryDB.splice(bookIndex, 1)[0];
-        triggerLog.unshift(`[AFTER DELETE TRIGGER]: Book "${deletedBook.title}" (ID: ${deletedBook.id}) removed at ${new Date().toLocaleTimeString()}`);
+        triggerLog.unshift(`[AFTER DELETE TRIGGER]: Book instance row for "${deletedBook.title}" (ID: ${deletedBook.id}) purged at ${new Date().toLocaleTimeString()}`);
         
         saveToStorage();
         clearInputs();
-        printOutput(`<p class='alert-msg' style='border-color: #e74c3c; background: #fde8e8;'>🗑️ DELETED: Book with ID ${id} has been permanently deleted.</p>`);
+        printOutput(`<div class='console-alert alert-danger'>🗑️ CASCADE PURGE: Database engine successfully dropped row targeted at index [ID: ${id}].</div>`);
     } else {
-        printOutput(`<p class='alert-msg' style='border-color: #e74c3c; background: #fde8e8;'>❌ Error: Book ID "${id}" does not exist.</p>`);
+        printOutput(`<div class='console-alert alert-danger'>❌ Error context: Specified key value sequence execution failed. Target entity instance [ID: ${id}] not found.</div>`);
     }
 }
 
 /* --- 4. DISPLAY RECORDS --- */
 function displayBooks() {
     if (libraryDB.length === 0) {
-        printOutput("<p class='placeholder-text'>Empty Database. No book records to display right now.</p>");
+        printOutput("<p class='placeholder-text'>Empty Database Schema. Execute entry injections to map record sets.</p>");
         return;
     }
 
@@ -112,9 +112,9 @@ function displayBooks() {
             <thead>
                 <tr>
                     <th>Book ID</th>
-                    <th>Title</th>
-                    <th>Author</th>
-                    <th>Price</th>
+                    <th>Title Name</th>
+                    <th>Author Specification</th>
+                    <th>Asset Price</th>
                 </tr>
             </thead>
             <tbody>
@@ -123,10 +123,10 @@ function displayBooks() {
     libraryDB.forEach(book => {
         tableHTML += `
             <tr>
-                <td><strong>${book.id}</strong></td>
-                <td>${book.title}</td>
+                <td style="color: #38bdf8; font-weight: 600;">${book.id}</td>
+                <td style="color: #fff; font-weight: 500;">${book.title}</td>
                 <td>${book.author}</td>
-                <td>$${book.price.toFixed(2)}</td>
+                <td style="color: #34d399; font-weight: 600;">$${book.price.toFixed(2)}</td>
             </tr>
         `;
     });
@@ -138,7 +138,7 @@ function displayBooks() {
 /* --- 5. STORED PROCEDURE SIMULATION --- */
 function executeProcedure() {
     if (libraryDB.length === 0) {
-        printOutput("<p class='alert-msg'>⚙️ <em>Procedure Output:</em> Database is empty. Stats cannot be computed.</p>");
+        printOutput("<div class='console-alert alert-danger'>⚙️ <em>Procedure Trace:</em> Schema calculations terminated. Target structure returns null count.</div>");
         return;
     }
 
@@ -146,11 +146,11 @@ function executeProcedure() {
     let expensiveBook = libraryDB.reduce((max, book) => book.price > max.price ? book : max, libraryDB[0]);
 
     let procedureHTML = `
-        <div style="line-height: 1.6; text-align: left;">
-            <p style="color: #4a90e2; font-weight: bold; margin-bottom: 5px;">⚙️ CALL GetLibraryStatistics();</p>
-            <p><strong>Total Inventory Count:</strong> ${libraryDB.length} books</p>
-            <p><strong>Total Value:</strong> $${totalValue.toFixed(2)}</p>
-            <p><strong>Most Premium Book:</strong> "${expensiveBook.title}" by ${expensiveBook.author} ($${expensiveBook.price.toFixed(2)})</p>
+        <div style="line-height: 1.8; text-align: left;">
+            <p style="color: #38bdf8; font-weight: bold; margin-bottom: 8px; font-family: 'Plus Jakarta Sans';">⚙️ EXECUTE COMPILATION: CALL GetLibraryStatistics();</p>
+            <p><strong style="color: #94a3b8;">Total Inventory Instances:</strong> ${libraryDB.length} records processed</p>
+            <p><strong style="color: #94a3b8;">Aggregate Relational Capital Value:</strong> <span style="color: #34d399; font-weight:600;">$${totalValue.toFixed(2)}</span></p>
+            <p><strong style="color: #94a3b8;">Max Premium Evaluation Title:</strong> <span style="color: #fbbf24;">"${expensiveBook.title}"</span> by ${expensiveBook.author} ($${expensiveBook.price.toFixed(2)})</p>
         </div>
     `;
     printOutput(procedureHTML);
@@ -159,13 +159,13 @@ function executeProcedure() {
 /* --- 6. TRIGGER DEMONSTRATION --- */
 function triggerDemo() {
     if (triggerLog.length === 0) {
-        printOutput("<p class='placeholder-text'>⚡ No trigger events caught yet. (Try inserting then deleting a book to ignite an audit trigger!).</p>");
+        printOutput("<p class='placeholder-text'>⚡ Operational Engine Alert: Trigger instances pipeline returns clear value. Execute array drop deletions to log details.</p>");
         return;
     }
 
-    let triggerHTML = `<p style="color: #e74c3c; font-weight: bold; margin-bottom: 8px; text-align: left;">⚡ Database Audit Log (Active Triggers):</p>`;
+    let triggerHTML = `<p style="color: #f87171; font-weight: bold; margin-bottom: 12px; text-align: left; font-family: 'Plus Jakarta Sans';">⚡ Operational Trigger State Logs Matrix (Active Interceptors):</p>`;
     triggerLog.forEach(log => {
-        triggerHTML += `<p style="font-family: monospace; font-size: 0.85rem; margin-bottom: 4px; background: #fff5f5; padding: 4px; border-radius:3px; text-align: left;">${log}</p>`;
+        triggerHTML += `<p style="font-family: monospace; font-size: 0.85rem; margin-bottom: 6px; background: #1e293b; padding: 8px 12px; border-radius:6px; text-align: left; border-left: 2px solid #ef4444; color: #cbd5e1;">${log}</p>`;
     });
 
     printOutput(triggerHTML);
