@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Library Management System</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght=400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -33,6 +33,10 @@
                     <input type="text" id="author" placeholder="Author Name">
                 </div>
                 <div class="input-wrapper">
+                    <label for="category">Category</label>
+                    <input type="text" id="category" placeholder="e.g., Fiction, Comic" value="General">
+                </div>
+                <div class="input-wrapper">
                     <label for="price">Price ($)</label>
                     <input type="number" id="price" placeholder="Price ($)">
                 </div>
@@ -42,15 +46,40 @@
                 <button onclick="insertBook()" class="btn btn-insert"><i class="fa-solid fa-square-plus"></i> Insert Book</button>
                 <button onclick="updateBook()" class="btn btn-update"><i class="fa-solid fa-pen-to-square"></i> Update Book</button>
                 <button onclick="deleteBook()" class="btn btn-delete"><i class="fa-solid fa-trash-can"></i> Delete Book</button>
-                <button onclick="displayBooks()" class="btn btn-display"><i class="fa-solid fa-table-list"></i> Display Records</button>
+            </div>
+        </section>
+
+        <hr class="divider">
+
+        <section class="form-section">
+            <h2><i class="fa-solid fa-users"></i> Member & Loan Registry (For Joins 3, 4, 8, 9)</h2>
+            <div class="input-group">
+                <div class="input-wrapper">
+                    <label for="memberid">Member ID</label>
+                    <input type="number" id="memberid" placeholder="e.g., 1">
+                </div>
+                <div class="input-wrapper">
+                    <label for="membername">Member Name</label>
+                    <input type="text" id="membername" placeholder="e.g., Kishan">
+                </div>
+                <div class="input-wrapper">
+                    <label for="issuebookid">Target Book ID</label>
+                    <input type="text" id="issuebookid" placeholder="Book ID to Loan">
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button onclick="addMember()" class="btn btn-display" style="background-color: #0ea5e9;"><i class="fa-solid fa-user-plus"></i> Save Member</button>
+                <button onclick="createIssueRecord()" class="btn btn-insert" style="background-color: #8b5cf6;"><i class="fa-solid fa-clipboard-check"></i> Log Issue Record</button>
             </div>
         </section>
 
         <hr class="divider">
 
         <section class="operations-section">
-            <h2><i class="fa-solid fa-microchip"></i> Database Operations</h2>
+            <h2><i class="fa-solid fa-microchip"></i> Database Operations & Queries</h2>
             <div class="button-group central-buttons">
+                <button onclick="displayBooks()" class="btn btn-display"><i class="fa-solid fa-table-list"></i> Run Assignment Queries (1-10)</button>
                 <button onclick="executeProcedure()" class="btn btn-op"><i class="fa-solid fa-gears"></i> Execute Stored Procedure</button>
                 <button onclick="triggerDemo()" class="btn btn-op"><i class="fa-solid fa-bolt-lightning"></i> Trigger Demonstration</button>
             </div>
